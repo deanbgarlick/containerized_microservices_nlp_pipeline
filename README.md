@@ -1,4 +1,4 @@
-To spin up a jupyter notebook for development in the container environment:
+To spin up a jupyter notebook for development on of the container environments cd into the container:
 
 ```
 docker build . -t tmp_container
