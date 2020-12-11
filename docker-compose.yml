@@ -1,0 +1,58 @@
+
+version: "3.7"
+
+services:
+
+  api_gateway:
+    build: ./api_gateway
+    container_name: api_gateway
+    restart: always
+    environment:
+      - APP_NAME=api_gateway
+    expose:
+      - 8080
+
+  check_company_microservice:
+    build: ./check_company_microservice
+    container_name: check_company_microservice
+    restart: always
+    environment:
+      - APP_NAME=check_company_microservice
+    expose:
+      - 8080
+
+  ner_microservice:
+    build: ./ner_microservice
+    container_name: ner_microservice
+    restart: always
+    environment:
+      - APP_NAME=ner_microservice
+    expose:
+      - 8080
+
+  sentiment_microservice:
+    build: ./sentiment_microservice
+    container_name: sentiment_microservice
+    restart: always
+    environment:
+      - APP_NAME=sentiment_microservice
+    expose:
+      - 5000
+
+  # topic_cluster_microservice:
+  #   build: ./label_topic_microservice
+  #   container_name: label_topic_microservice
+  #   restart: always
+  #   environment:
+  #     - APP_NAME=label_topic_microservice
+  #   expose:
+  #     - 8084
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    restart: always
+    depends_on:
+      - api_gateway
+    ports:
+      - "80:80"
