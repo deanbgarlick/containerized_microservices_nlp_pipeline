@@ -1,7 +1,14 @@
 To build this microservice pipleline for nlp processing of emails run:
 
 ```
-docker-compose up --build
+docker-compose up -d --build
+```
+
+
+Once all microservices have booted the service can be tested with:
+
+```
+sh local_test/predict.sh data/payload.json
 ```
 
 
