@@ -27,7 +27,7 @@ def main():
     email_string = request.json['email_string']
     parsed_email = email.parser.Parser().parsestr(email_string)
     email_batch = pd.DataFrame.from_records([parsed_email.__dict__])
-    enron_related = True in emails_in_batch_contain_enron(email_batch)
+    enron_related = True in emails_in_batch_contain_enron(email_batch).values
     return jsonify({'email_contains_enron': enron_related})
 
 

@@ -43,6 +43,9 @@ class MultilingualUncasedSentimentTransformer():
 
 if __name__ == '__main__':
 
+    from utils import take_top_email_from_chain
+
     email_data_df = pd.read_csv('./data/emails_cleaned.csv', nrows=10)
-    must = MultilingualUncasedSentimentTransformer.instance()
-    print(must.batch_transform(email_data_df['body'].astype(str)))
+    email_bodies = email_data_df['body'].astype(str).apply(take_top_email_from_chain)
+    transformer = MultilingualUncasedSentimentTransformer.instance()
+    print(transformer.batch_transform(email_bodies))

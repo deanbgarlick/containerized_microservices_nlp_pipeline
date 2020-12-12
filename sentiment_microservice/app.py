@@ -2,7 +2,7 @@ import os
 import time
 from flask import request, jsonify, Flask
 from transformer import MultilingualUncasedSentimentTransformer
-
+from utils import take_top_email_from_chain
 
 app = Flask(__name__)
 MultilingualUncasedSentimentTransformer.instance()
@@ -10,15 +10,10 @@ MultilingualUncasedSentimentTransformer.instance()
 
 @app.route("/text", methods = ['POST'])
 def main():
-    text = request.json['text']
-    print('in sentiment microservice')
-    start_time = time.time()
+    email_chain_text = request.json['text']
+    top_email_text = take_top_email_from_chain(email_chain_text)
     transformer = MultilingualUncasedSentimentTransformer.instance()
-    print('obtained transformer:')
-    print(time.time() - start_time)
-    sentiment_score = transformer.transform(text)
-    print('obtained sentiment score')
-    print(time.time() - start_time)
+    sentiment_score = transformer.transform(top_email_text)
     return jsonify({'sentiment_score': sentiment_score})
 
 
@@ -28,12 +23,14 @@ if __name__ == '__main__':
     import pandas as pd
 
     emails = pd.read_csv('data/emails.csv', nrows=10)
-    email_ner_list = []
+    email_sentiment_list = []
     model = MultilingualUncasedSentimentTransformer.instance()
 
     for i in range(0, 10):
         email_ = emails.iloc[i]['message']
         email_parsed = email.parser.Parser().parsestr(email_)
-        email_ner_list.append(model.transform(email_parsed._payload))
+        email_text = email_parsed._payload
+        top_email_text = take_top_email_from_chain(email_text)
+        email_sentiment_list.append(model.transform(top_email_text))
 
-    print(email_ner_list)
+    print(email_sentiment_list)

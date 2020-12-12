@@ -28,11 +28,11 @@ def process_email():
     sentiment_res = requests.post('http://sentiment_microservice:5000/text', json={"text": parsed_email._payload}, timeout=3000)
 
 
-    if check_company_res.json['email_contains_enron']:
-        label_topic_res = requests.post('http://label_topic_microservice:8080/text', json={"email_string": email_string})
+    if check_company_res.json()['email_contains_enron']:
+        label_topic_res = requests.post('http://label_topic_microservice:8080/text', json={"text": parsed_email._payload})
         topic_label = label_topic_res.json()['topic_label']
 
-        if label_topic_res.json['topic_label'] == 'oil and gas':
+        if label_topic_res.json()['topic_label'] == 'oil and gas':
             ner_res = requests.post('http://ner_microservice:8080/text', json={"text": parsed_email._payload})
             relevant_persons = ner_res.json()['persons']
             relevant_organizations = ner_res.json()['organizations']

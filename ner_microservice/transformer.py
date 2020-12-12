@@ -21,7 +21,6 @@ class NerModel:
         persons = set([ent.text.title() for ent in doc.ents if ent.label_ == 'PERSON'])
         return {'persons': list(persons), 'organizations': list(organizations)}
 
-
     def batch_transform(self, X):
         X = pd.DataFrame({'text': X})
         return X['text'].apply(self.transform)

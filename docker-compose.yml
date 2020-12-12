@@ -39,14 +39,14 @@ services:
     expose:
       - 5000
 
-  # topic_cluster_microservice:
-  #   build: ./label_topic_microservice
-  #   container_name: label_topic_microservice
-  #   restart: always
-  #   environment:
-  #     - APP_NAME=label_topic_microservice
-  #   expose:
-  #     - 8084
+  label_topic_microservice:
+    build: ./label_topic_microservice
+    container_name: label_topic_microservice
+    restart: always
+    environment:
+      - APP_NAME=label_topic_microservice
+    expose:
+      - 8080
 
   nginx:
     build: ./nginx
