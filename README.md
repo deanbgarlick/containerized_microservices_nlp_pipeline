@@ -1,4 +1,4 @@
-To build this microservice pipleline for nlp processing of emails run:
+To build this microservice pipleline for nlp processing of emails git clone this repo, cd into the repo, then run:
 
 ```
 docker-compose up -d --build
