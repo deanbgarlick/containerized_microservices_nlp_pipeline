@@ -19,7 +19,7 @@ The service can be run on a csv conatining an index column and a column named 'm
 python run_service_for_dataset.py --input_filename data/emails.csv --output_filename data/results.csv
 ```
 
-To spin up a jupyter notebook for development in one of the microservices container environments, first cd into the microservice directory, then run:
+To spin up a jupyter notebook for development in one of the microservices' container environments, first cd into the microservice directory, then run:
 
 ```
 docker build . -t temp_container
