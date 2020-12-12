@@ -11,6 +11,8 @@ services:
       - APP_NAME=api_gateway
     expose:
       - 8080
+    volumes:
+      - ./data:/home/microservice/data
 
   check_company_microservice:
     build: ./check_company_microservice
@@ -20,6 +22,8 @@ services:
       - APP_NAME=check_company_microservice
     expose:
       - 8080
+    volumes:
+      - ./data:/home/microservice/data
 
   ner_microservice:
     build: ./ner_microservice
@@ -29,6 +33,8 @@ services:
       - APP_NAME=ner_microservice
     expose:
       - 8080
+    volumes:
+      - ./data:/home/microservice/data
 
   sentiment_microservice:
     build: ./sentiment_microservice
@@ -38,6 +44,8 @@ services:
       - APP_NAME=sentiment_microservice
     expose:
       - 5000
+    volumes:
+      - ./data:/home/microservice/data
 
   label_topic_microservice:
     build: ./label_topic_microservice
@@ -47,6 +55,8 @@ services:
       - APP_NAME=label_topic_microservice
     expose:
       - 8080
+    volumes:
+      - ./data:/home/microservice/data
 
   nginx:
     build: ./nginx

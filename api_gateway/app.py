@@ -52,3 +52,15 @@ def process_email():
         'relevant_persons': relevant_persons,
         'relevant_organizations': relevant_organizations
     })
+
+
+if __name__ == '__main__':
+
+    import requests
+    import pandas as pd
+
+    emails_df = pd.read_csv('data/emails.csv')
+    for i in range(emails_df.shape[0]):
+        message_string = emails_df.iloc[i].message
+        res = requests.post('http://localhost:8080', json={"text": message_string})
+        print(res.json())
