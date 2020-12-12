@@ -13,7 +13,6 @@ CorExTopicModel.instance()
 def main():
     text = request.json['text']
     text = EmailCleaningService.instance()(text)
-    print(text)
     transformer = CorExTopicModel.instance()
     topic_label = transformer.transform(text)
 
