@@ -1,6 +1,6 @@
 .ipynb_checkpoints
 data/
-!data/placeholder
+!data/emails.csv
 */data
 .DS_Store
 __pycache__
