@@ -96,8 +96,6 @@ class CorExTopicModel:
     def transform(self, text):
         text_array = np.array([text])
         topic_array = self.batch_transform(text_array)
-        print(topic_array)
-        print(self._oil_and_gas_topic_num)
         is_oil_and_gas = np.sum(topic_array[0, self._oil_and_gas_topic_num])
         if is_oil_and_gas:
             topic_estimation = 'oil and gas'
