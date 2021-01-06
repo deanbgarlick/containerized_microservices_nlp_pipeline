@@ -13,7 +13,7 @@ sh local_test/predict.sh data/payload_not_oil_and_gas.json
 python local_test/end_to_end_test.py
 ```
 
-The service can be called on a csv conatining an index column and a column named 'message' containing the string representation of emails as present in data/emails.csv . This is done using the command line utility run_service_for_dataset.py
+The service can be called on a csv containing an index column and a column named 'message' containing the string representation of emails as present in data/emails.csv . This is done using the command line utility run_service_for_dataset.py
 
 ```
 python run_service_for_dataset.py --input_filename data/emails.csv --output_filename data/results.csv
